@@ -8,7 +8,7 @@ const App = ()=> {
 
   const[history,setHistory]=useState([{board:Array(9).fill(null),isXNext:true},]);
 
-  console.log('history',history);
+  // console.log('history',history);
 
   const[currentMove,setCurrentMove]=useState(0);
 
@@ -40,12 +40,16 @@ const App = ()=> {
     setCurrentMove(prev=>prev+1);
   }
 
+  const moveTo= (move)=>{
+      setCurrentMove(move);
+  }
+
   return(
     <div className="app">
     <h1>TIC TAC TOE!</h1>
     <h2>{message}</h2>
     <Board board={current.board} handleSquareClick={handleSquareClick} />
-    <History/>
+    <History history={history} moveTo={moveTo} currentMove={currentMove}/>
     </div>
   );
 };
